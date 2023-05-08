@@ -1,67 +1,20 @@
 
-// import { useEffect } from 'react';
 
-// import {
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableHead,
-//   TableRow,
-//   Paper,
-// } from '@mui/material';
-// import { useStore } from '../store/services';
-
-// const ServicioList = () => {
-//   const servicios = useStore((state) => state.servicios);
-//   const fetchServicios = useStore((state) => state.fetchServicios);
-//    console.log(servicios)
-//   useEffect(() => {
-//     fetchServicios();
-//   }, [fetchServicios]);
-
-//   return (
-//     <Paper>
-//       <Table>
-//         <TableHead>
-//           <TableRow>
-//             <TableCell>Nombre</TableCell>
-//             <TableCell>Precio</TableCell>
-//             <TableCell>Duración</TableCell>
-//             <TableCell>Descripcion</TableCell>
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {servicios?.map((servicio) => (
-//             <TableRow key={servicio._id}>
-//               <TableCell>{servicio.name}</TableCell>
-//               <TableCell>{servicio.price}</TableCell>
-//               <TableCell>{servicio.duration}</TableCell>
-//               <TableCell>{servicio.description}</TableCell>
-//             </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//     </Paper>
-//   );
-// };
-
-// export default ServicioList;
-
-
-import { useEffect } from 'react';
-import {Service} from "../models/service"
-import {
-  Card,
-  CardContent,
-  Typography,
-  Grid,
-  Container,
-} from '@mui/material';
-import { useStore } from '../store/services';
+import { useEffect } from "react";
+import { Service } from "../models/service";
+import { Card, CardContent, Typography, Grid, Container, CardActionArea, CardMedia } from "@mui/material";
+import { useStore } from "../store/services";
 
 const ServicioCard = ({ servicio }: { servicio: Service }) => {
   return (
     <Card>
+      <CardActionArea>
+        <CardMedia
+        component="img"
+        image={servicio.image}
+        height="200"
+        alt="description"
+        />
       <CardContent>
         <Typography variant="h5" component="div">
           {servicio.name}
@@ -72,10 +25,9 @@ const ServicioCard = ({ servicio }: { servicio: Service }) => {
         <Typography variant="body2" color="text.secondary">
           Duración: {servicio.duration}
         </Typography>
-        <Typography>
-            Decripcion: {servicio.description}
-        </Typography>
+        <Typography>Decripcion: {servicio.description}</Typography>
       </CardContent>
+      </CardActionArea>
     </Card>
   );
 };
@@ -102,4 +54,3 @@ const ServicioList = () => {
 };
 
 export default ServicioList;
-
